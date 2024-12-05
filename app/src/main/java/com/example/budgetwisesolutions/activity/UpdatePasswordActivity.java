@@ -67,11 +67,15 @@ public class UpdatePasswordActivity extends AppCompatActivity {
                     edtNewPassword.setError("Password must be at least 8 characters long");
                     return;
                 }
+                if (!containsUppercase(newPassword) || !containsLowercase(newPassword) || !containsDigit(newPassword) || !containsSpecialCharacter(newPassword)) {
+                    edtNewPassword.setError("Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character");
+                    return;
+                }
                 if (newPassword.contains(username)) {
                     edtNewPassword.setError("Password cannot contain the username");
                     return;
                 }
-                if (containsConsecutiveNumbers(newPassword)) {
+                if (containsEightConsecutiveNumbers(newPassword)) {
                     edtNewPassword.setError("Password cannot contain consecutive numbers");
                     return;
                 }
@@ -91,14 +95,66 @@ public class UpdatePasswordActivity extends AppCompatActivity {
         });
     }
 
-    private boolean containsConsecutiveNumbers(String password) {
-        for (int i = 0; i < password.length() - 2; i++) {
+    private boolean containsEightConsecutiveNumbers(String password) {
+        for (int i = 0; i <= password.length() - 8; i++) {
             if (Character.isDigit(password.charAt(i)) &&
                     Character.isDigit(password.charAt(i + 1)) &&
-                    Character.isDigit(password.charAt(i + 2))) {
-                return true; // Nếu tìm thấy 3 số liên tiếp, trả về true
+                    Character.isDigit(password.charAt(i + 2)) &&
+                    Character.isDigit(password.charAt(i + 3)) &&
+                    Character.isDigit(password.charAt(i + 4)) &&
+                    Character.isDigit(password.charAt(i + 5)) &&
+                    Character.isDigit(password.charAt(i + 6)) &&
+                    Character.isDigit(password.charAt(i + 7))) {
+
+                // Kiểm tra xem 8 số này có phải là số liên tiếp không
+                int first = Character.getNumericValue(password.charAt(i));
+                if (first + 1 == Character.getNumericValue(password.charAt(i + 1)) &&
+                        first + 2 == Character.getNumericValue(password.charAt(i + 2)) &&
+                        first + 3 == Character.getNumericValue(password.charAt(i + 3)) &&
+                        first + 4 == Character.getNumericValue(password.charAt(i + 4)) &&
+                        first + 5 == Character.getNumericValue(password.charAt(i + 5)) &&
+                        first + 6 == Character.getNumericValue(password.charAt(i + 6)) &&
+                        first + 7 == Character.getNumericValue(password.charAt(i + 7))) {
+                    return true; // Có dãy 8 số liên tiếp
+                }
             }
         }
-        return false; // Nếu không tìm thấy, trả về false
+        return false; // Không có dãy 8 số liên tiếp
+    }
+    private boolean containsUppercase(String password) {
+        for (char c : password.toCharArray()) {
+            if (Character.isUpperCase(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean containsLowercase(String password) {
+        for (char c : password.toCharArray()) {
+            if (Character.isLowerCase(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean containsDigit(String password) {
+        for (char c : password.toCharArray()) {
+            if (Character.isDigit(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean containsSpecialCharacter(String password) {
+        String specialCharacters = "!@#$%^&*()-_=+[]{}|;:'\",.<>?/`~";
+        for (char c : password.toCharArray()) {
+            if (specialCharacters.indexOf(c) != -1) {
+                return true;
+            }
+        }
+        return false;
     }
 }
