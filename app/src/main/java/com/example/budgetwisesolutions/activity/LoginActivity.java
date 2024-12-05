@@ -37,17 +37,22 @@ public class LoginActivity extends AppCompatActivity {
         tvForgetPassword = findViewById(R.id.tvForgetPassword);
         userDb = new UserDb(LoginActivity.this);
 
-        tvForgetPassword.setOnClickListener(view -> {
-            Intent intent = new Intent(LoginActivity.this, ForgetPasswordActivity.class);
-            startActivity(intent);
+        tvForgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this,ForgetPasswordActivity.class);
+                startActivity(intent);
+            }
         });
+        tvRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
 
-        tvRegister.setOnClickListener(view -> {
-            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-            startActivity(intent);
+            }
         });
-
-        LoginWithDataBaseSQLite();  // Chạy đăng nhập với SQLite
+        LoginWithDataBaseSQLite();
     }
 
     private void LoginWithDataFile(){

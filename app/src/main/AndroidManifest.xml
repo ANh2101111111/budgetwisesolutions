@@ -21,6 +21,8 @@
         <activity android:name=".activity.IncomeActivity" />
         <activity android:name=".activity.BudgetActivity" />
         <activity android:name=".activity.MenuActivity" />
+        <activity android:name=".activity.ForgetPasswordActivity" />
+        <activity android:name=".activity.UpdatePasswordActivity" />
         <!-- Login Activity -->
         <activity
             android:name=".activity.LoginActivity"
