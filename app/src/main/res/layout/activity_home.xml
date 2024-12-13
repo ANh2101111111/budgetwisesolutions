@@ -6,10 +6,15 @@
     android:padding="16dp"
     android:background="@drawable/gradient_background">
 
+<<<<<<< HEAD
+=======
+    <!-- Toolbar -->
+>>>>>>> origin/Tu
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:orientation="vertical">
 
         <!-- Toolbar -->
@@ -44,6 +49,30 @@
                     android:textColor="@color/black" />
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
+=======
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <!-- Tiêu đề HomeBudget -->
+        <TextView
+            android:id="@+id/tvAppTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="HomeBudget"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <!-- Biểu tượng ba dấu gạch ngang -->
+        <ImageView
+            android:id="@+id/menuIcon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_menu"
+            android:contentDescription="Menu Icon"
+            android:layout_gravity="center_vertical" />
+>>>>>>> origin/Tu
     </LinearLayout>
 
     <!-- Expenses Section -->

@@ -90,7 +90,11 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                     if(checkLogin){
+<<<<<<< HEAD
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+=======
+                        Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+>>>>>>> origin/Tu
                         startActivity(intent);
                         Bundle bundle = new Bundle();
                         bundle.putString("MY_Email", user);

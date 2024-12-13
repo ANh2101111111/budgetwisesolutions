@@ -15,6 +15,7 @@
         android:theme="@style/Theme.BudgetWiseSolutions">
 
         <!-- Register Activity -->
+<<<<<<< HEAD
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.ExpensesActivity" />
@@ -28,11 +29,40 @@
             android:name=".activity.HomeActivity"
             android:exported="true"
             android:theme="@style/Theme.BudgetWiseSolutions">
+=======
+        <activity
+            android:name=".activity.RegisterActivity" />
+        <activity
+            android:name=".activity.MenuActivity" />
+        <activity
+            android:name=".activity.ExpensesActivity" />
+        <activity
+            android:name=".activity.IncomeActivity" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:exported="true">
+>>>>>>> origin/Tu
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
+=======
+        <activity
+            android:name=".activity.BudgetActivity" />
+        <activity
+            android:name=".activity.ForgetPasswordActivity" />
+        <activity
+            android:name=".activity.UpdatePasswordActivity" />
+        <!-- Login Activity -->
+        <activity
+            android:name=".activity.HomeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.BudgetWiseSolutions">
+
+        </activity>
+>>>>>>> origin/Tu
     </application>
 
 </manifest>

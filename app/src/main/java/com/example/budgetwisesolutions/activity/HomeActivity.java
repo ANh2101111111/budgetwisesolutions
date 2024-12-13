@@ -30,7 +30,11 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start MenuActivity when the menu icon is clicked
+<<<<<<< HEAD
                 Intent intent = new Intent(HomeActivity.this, com.example.budgetwisesolutions.activity.MenuActivity.class);
+=======
+                Intent intent = new Intent(HomeActivity.this, MenuActivity.class);
+>>>>>>> origin/Tu
                 startActivity(intent);
             }
         });
