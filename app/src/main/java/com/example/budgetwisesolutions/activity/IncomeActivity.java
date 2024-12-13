@@ -1,25 +1,18 @@
 package com.example.budgetwisesolutions.activity;
 
-<<<<<<< HEAD
 import android.content.Intent;
-=======
->>>>>>> origin/Tu
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.budgetwisesolutions.R;
-<<<<<<< HEAD
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-=======
->>>>>>> origin/Tu
 
 public class IncomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_income);
-<<<<<<< HEAD
 
         // Tìm kiếm BottomNavigationView
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigation);
@@ -49,7 +42,5 @@ public class IncomeActivity extends AppCompatActivity {
 
             return false;
         });
-=======
->>>>>>> origin/Tu
     }
 }

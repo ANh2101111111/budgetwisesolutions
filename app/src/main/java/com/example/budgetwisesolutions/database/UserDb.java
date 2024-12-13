@@ -57,6 +57,13 @@ public class UserDb extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
+    public boolean isEmailExists(String email) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query("users", new String[]{"email"}, "email=?", new String[]{email}, null, null, null);
+        boolean exists = (cursor.getCount() > 0);
+        cursor.close();
+        return exists;
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public long addNewAccountUser(String username, String password, String email, String phone, String adress){

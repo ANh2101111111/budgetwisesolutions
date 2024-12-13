@@ -75,13 +75,11 @@ public class RegisterActivity extends AppCompatActivity {
             edtPass.setError("Password cannot be empty");
             return;
         }
-<<<<<<< HEAD
+
         if (userDb.isEmailExists(email)) {
             edtEmail.setError("Email đã được đăng ký");
             return;
         }
-=======
->>>>>>> origin/Tu
         if (pass.length() < 8) {
             edtPass.setError("Password must be at least 8 characters long");
             return;
@@ -102,21 +100,7 @@ public class RegisterActivity extends AppCompatActivity {
             edtEmail.setError("Email not empty");
             return;
         }
-<<<<<<< HEAD
-        if (TextUtils.isEmpty(phone)){
-            edtPhone.setError("Phone not empty");
-            return;
-        }
-        if (TextUtils.isEmpty(phone) || phone.length() != 10 || !phone.matches("\\d{10}")) {
-            edtPhone.setError("Phone number must be exactly 10 digits");
-            return;
-        }
-=======
-        if (TextUtils.isEmpty(phone)|| phone.length() != 10){
-            edtPhone.setError("Phone not empty");
-            return;
-        }
->>>>>>> origin/Tu
+
         long insert = userDb.addNewAccountUser(user,pass,email,phone,address);
         if(insert == -1){
             //loi khong insert duoc

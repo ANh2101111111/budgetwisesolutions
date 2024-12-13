@@ -1,6 +1,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-<<<<<<< HEAD
         android:id="@+id/home_menu"
         android:icon="@drawable/ic_home"
         android:title="Home" />
@@ -9,6 +8,7 @@
         android:id="@+id/expenses_menu"
         android:icon="@drawable/ic_expense"
         android:title="Expenses" />
+
     <item
         android:id="@+id/income_menu"
         android:icon="@drawable/ic_income"
@@ -19,21 +19,3 @@
         android:icon="@drawable/ic_budget"
         android:title="Budget" />
 </menu>
-=======
-        android:id="@+id/nav_home"
-        android:icon="@drawable/ic_home"
-        android:title="Home" />
-    <item
-        android:id="@+id/nav_expense"
-        android:icon="@drawable/ic_expense"
-        android:title="Expense" />
-    <item
-        android:id="@+id/nav_income"
-        android:icon="@drawable/ic_income"
-        android:title="Income" />
-    <item
-        android:id="@+id/nav_budget"
-        android:icon="@drawable/ic_budgettu"
-        android:title="Budget" />
-</menu>
->>>>>>> origin/Tu

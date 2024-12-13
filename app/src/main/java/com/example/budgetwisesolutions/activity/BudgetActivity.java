@@ -1,18 +1,6 @@
 package com.example.budgetwisesolutions.activity;
-<<<<<<< HEAD
+
 import android.content.Intent;
-import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.budgetwisesolutions.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-public class BudgetActivity extends AppCompatActivity {
-
-}
-=======
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -25,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.budgetwisesolutions.adapter.BudgetAdapter;
 import com.example.budgetwisesolutions.database.BudgetDatabaseHelper;
 import com.example.budgetwisesolutions.model.Budget;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.example.budgetwisesolutions.R;
 import java.util.ArrayList;
@@ -43,6 +32,34 @@ public class BudgetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_budget);
+// Tìm kiếm BottomNavigationView
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
+        // Đặt menu hiện tại được chọn là expenses_menu
+        bottomNavigationView.setSelectedItemId(R.id.expenses_menu);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+                    int itemId = item.getItemId(); // Lấy ID mục được chọn
+
+                    if (itemId == R.id.home_menu) {
+                        startActivity(new Intent(BudgetActivity.this, HomeActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    } else if (itemId == R.id.budget_menu) {
+                        // Đã ở trang hiện tại
+                        return true;
+                    } else if (itemId == R.id.income_menu) {
+                        startActivity(new Intent(BudgetActivity.this, IncomeActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    } else if (itemId == R.id.expenses_menu) {
+                        startActivity(new Intent(BudgetActivity.this, ExpensesActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    }
+            return false;
+        });
+
 
         recyclerView = findViewById(R.id.budgetRecyclerView);
         addBudgetButton = findViewById(R.id.addBudgetButton);
@@ -52,23 +69,6 @@ public class BudgetActivity extends AppCompatActivity {
 
         addBudgetButton.setOnClickListener(v -> showAddBudgetDialog());
     }
-
-//    private void loadBudgets() {
-//        budgetList = databaseHelper.getAllBudgets(); // Lấy danh sách từ database
-//        adapter = new BudgetAdapter(this, budgetList, new BudgetAdapter.OnItemClickListener() {
-//            @Override
-//            public void onEditClick(Budget budget) {
-//                showUpdateBudgetDialog(budget);
-//            }
-//
-//            @Override
-//            public void onDeleteClick(Budget budget) {
-//                showDeleteConfirmationDialog(budget);
-//            }
-//        });
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        recyclerView.setAdapter(adapter);
-//    }
 
     private void loadBudgets() {
         budgetList.clear();
@@ -92,7 +92,6 @@ public class BudgetActivity extends AppCompatActivity {
         }
     }
 
-
     private void showAddBudgetDialog() {
         AddBudgetDialog dialog = new AddBudgetDialog(this, newBudget -> {
             long id = databaseHelper.addBudget(newBudget); // Thêm mới vào database
@@ -106,21 +105,6 @@ public class BudgetActivity extends AppCompatActivity {
         });
         dialog.show();
     }
-
-//    private void showUpdateBudgetDialog(Budget budget) {
-//        UpdateBudgetDialog dialog = new UpdateBudgetDialog(this, budget, updatedBudget -> {
-//            if (updatedBudget != null) { // Nếu không bị xóa
-//                databaseHelper.updateBudget(updatedBudget);
-//                int index = budgetList.indexOf(budget);
-//                if (index != -1) {
-//                    budgetList.set(index, updatedBudget); // Cập nhật danh sách
-//                    adapter.notifyItemChanged(index); // Cập nhật RecyclerView
-//                }
-//                Toast.makeText(this, "Budget updated", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//        dialog.show();
-//    }
 
     private void showUpdateBudgetDialog(Budget budget) {
         UpdateBudgetDialog dialog = new UpdateBudgetDialog(this, budget, new UpdateBudgetDialog.OnBudgetUpdateListener() {
@@ -145,7 +129,6 @@ public class BudgetActivity extends AppCompatActivity {
         dialog.show();
     }
 
-
     private void showDeleteConfirmationDialog(Budget budget) {
         new AlertDialog.Builder(this)
                 .setTitle("Delete Budget")
@@ -154,20 +137,6 @@ public class BudgetActivity extends AppCompatActivity {
                 .setNegativeButton("No", null)
                 .show();
     }
-
-//    private void deleteBudget(Budget budget) {
-//        int rowsAffected = databaseHelper.deleteBudget(budget.getId());
-//        if (rowsAffected > 0) {
-//            int position = budgetList.indexOf(budget);
-//            if (position != -1) {
-//                budgetList.remove(position); // Xóa khỏi danh sách hiện tại
-//                adapter.notifyItemRemoved(position); // Cập nhật RecyclerView
-//            }
-//            Toast.makeText(this, "Budget deleted", Toast.LENGTH_SHORT).show();
-//        } else {
-//            Toast.makeText(this, "Failed to delete budget", Toast.LENGTH_SHORT).show();
-//        }
-//    }
 
     private void deleteBudget(Budget budget) {
         if (budget == null) {
@@ -189,9 +158,4 @@ public class BudgetActivity extends AppCompatActivity {
             Toast.makeText(this, "Failed to delete budget", Toast.LENGTH_SHORT).show();
         }
     }
-
 }
-
-
-
->>>>>>> origin/Tu

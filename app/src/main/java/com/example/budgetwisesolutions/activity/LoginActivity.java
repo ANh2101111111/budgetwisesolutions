@@ -21,7 +21,7 @@ import java.io.FileInputStream;
 public class LoginActivity extends AppCompatActivity {
 
     TextView tvRegister, tvForgetPassword;
-    EditText edtEmailLogin, edtPassLogin;  // Đổi edtUserLogin thành edtEmailLogin
+    EditText edtEmailLogin, edtPassLogin;
     Button btnSubmit;
     UserDb userDb;
 
@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         tvRegister = findViewById(R.id.tvRegister);
-        edtEmailLogin = findViewById(R.id.edtEmailLogin);  // Thay thế edtUserLogin
+        edtEmailLogin = findViewById(R.id.edtEmailLogin);
         edtPassLogin = findViewById(R.id.edtPassLogin);
         btnSubmit = findViewById(R.id.btnSubmit);
         tvForgetPassword = findViewById(R.id.tvForgetPassword);
@@ -40,84 +40,79 @@ public class LoginActivity extends AppCompatActivity {
         tvForgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this,ForgetPasswordActivity.class);
+                Intent intent = new Intent(LoginActivity.this, ForgetPasswordActivity.class);
                 startActivity(intent);
             }
         });
+
         tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
-
             }
         });
+
         LoginWithDataBaseSQLite();
     }
 
-    private void LoginWithDataFile(){
+    private void LoginWithDataFile() {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String user = edtEmailLogin.getText().toString().trim();
                 String pass = edtPassLogin.getText().toString().trim();
-                if(TextUtils.isEmpty(user)){
-                    edtEmailLogin.setError("Email can be not empty");
+
+                if (TextUtils.isEmpty(user)) {
+                    edtEmailLogin.setError("Email cannot be empty");
                     return;
                 }
-                if(TextUtils.isEmpty(pass)){
-                    edtPassLogin.setError("Password can be not empty");
+                if (TextUtils.isEmpty(pass)) {
+                    edtPassLogin.setError("Password cannot be empty");
                     return;
                 }
-                //doc du lieu tu file trong local storage
-                //check du lieu nguoi dung dang nhap
-                try{
+
+                // Read data from the local file
+                try {
                     FileInputStream fileInputStream = openFileInput("account.txt");
-                    int read = -1;
+                    int read;
                     StringBuilder builder = new StringBuilder();
-                    while((read = fileInputStream.read()) != -1){
+                    while ((read = fileInputStream.read()) != -1) {
                         builder.append((char) read);
                     }
+                    fileInputStream.close();
+
                     boolean checkLogin = false;
-                    String[] infoAccount = null; //chua tat ca thong tin tai khoan
-                    infoAccount = builder.toString().trim().split("\n");
-                    for(String account : infoAccount){
-                        String email = account.substring(0,account.indexOf("|")).trim();
-                        String password = account.substring(account.indexOf("|")+1).trim();
-                        if(email.equals(email) && password.equals(pass)){
+                    String[] infoAccount = builder.toString().trim().split("\n");
+                    for (String account : infoAccount) {
+                        String email = account.substring(0, account.indexOf("|")).trim();
+                        String password = account.substring(account.indexOf("|") + 1).trim();
+                        if (email.equals(user) && password.equals(pass)) {
                             checkLogin = true;
                             break;
                         }
                     }
-                    if(checkLogin){
-<<<<<<< HEAD
+
+                    if (checkLogin) {
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-=======
-                        Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
->>>>>>> origin/Tu
-                        startActivity(intent);
                         Bundle bundle = new Bundle();
                         bundle.putString("MY_Email", user);
-
-                        intent.putExtras(bundle); //dong goi
-                        startActivity(intent); // gui di sang activity khac
+                        intent.putExtras(bundle); // Pass data to another activity
+                        startActivity(intent); // Navigate to another activity
                         finish();
-                    }else {
-                        Toast.makeText(LoginActivity.this, "Account Invalid",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Account Invalid", Toast.LENGTH_SHORT).show();
                     }
-                } catch (Exception e){
-                    throw new RuntimeException();
+                } catch (Exception e) {
+                    Toast.makeText(LoginActivity.this, "Error reading file", Toast.LENGTH_SHORT).show();
                 }
-
-
-
             }
         });
     }
 
     private void LoginWithDataBaseSQLite() {
         btnSubmit.setOnClickListener(view -> {
-            String email = edtEmailLogin.getText().toString().trim();  // Đổi user thành email
+            String email = edtEmailLogin.getText().toString().trim();
             String pass = edtPassLogin.getText().toString().trim();
 
             if (TextUtils.isEmpty(email)) {
@@ -131,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             try {
-                UserModel checkLogin = userDb.checkUserLogin(email, pass);  // Sửa phương thức kiểm tra
+                UserModel checkLogin = userDb.checkUserLogin(email, pass);
 
                 if (checkLogin != null && checkLogin.getEmail() != null) {
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
@@ -150,4 +145,3 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 }
-

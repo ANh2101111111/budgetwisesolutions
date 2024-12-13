@@ -5,23 +5,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toolbar;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.budgetwisesolutions.R;
-import com.google.android.material.navigation.NavigationView;
 
-
-public class HomeActivity extends AppCompatActivity {
+public class
+HomeActivity extends AppCompatActivity {
     private ImageView menuIcon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
 
         menuIcon = findViewById(R.id.menuIcon);
 
@@ -30,14 +26,11 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Start MenuActivity when the menu icon is clicked
-<<<<<<< HEAD
-                Intent intent = new Intent(HomeActivity.this, com.example.budgetwisesolutions.activity.MenuActivity.class);
-=======
                 Intent intent = new Intent(HomeActivity.this, MenuActivity.class);
->>>>>>> origin/Tu
                 startActivity(intent);
             }
         });
+
         // Lấy tham chiếu đến các Layout
         LinearLayout sectionExpenses = findViewById(R.id.sectionExpenses);
         LinearLayout sectionIncome = findViewById(R.id.sectionIncome);
@@ -71,7 +64,4 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
-
- }
-
-
+}
